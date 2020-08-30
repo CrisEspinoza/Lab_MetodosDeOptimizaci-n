@@ -66,54 +66,46 @@ def objectFunction(auxSolution, matrizF, matrizD):
 
 # ------------- SA ------------------#
 
-def SA(Tmax, Tmin, iteracionesInternas, alpha, initial, matrizF, matrizD):
-	# Time
-    start_time = time()
+def SA(Tmax, Tmin, iteracionesInternas, alpha, initial, matrizF, matrizD,repeat):
 
-    # Guardar objectFunction
-    costos = []
-
-    mejorCosto = copy.copy(objectFunction(initial,matrizF,matrizD))
-    costoActual = copy.copy(objectFunction(initial,matrizF,matrizD))
-    mejorSolucion = copy.copy(initial)
-    actualSolucion = copy.copy(initial)
-    Tact = copy.copy(Tmax)
-
-    auxiiii = 0
-    while(Tact > Tmin):
-
-        for i in range(iteracionesInternas):
-
-        	# Ver iteraciones
-            if (auxiiii % 1000) == 0 :
-                print("Vamos en la iteracion: " + str(auxiiii))
-            auxiiii = auxiiii + 1
-
-            # Generando vecino
-            initial_prima = copy.copy(theBestNeighborhood(actualSolucion,matrizF,matrizD))
-            costoNew = copy.copy(objectFunction(initial_prima,matrizF,matrizD))
-            error = costoNew - costoActual
-
-            if error <= 0: 
-            	costoActual = copy.copy(costoNew)
-            	actualSolucion = copy.copy(initial_prima)
-            	if mejorCosto > costoNew:
-                    mejorCosto = copy.copy(costoNew)
-                    mejorSolucion = copy.copy(initial_prima)
-                
-            elif random.random() < (math.e**(-(error)/Tact)):
-                actualSolucion = copy.copy(initial_prima)
-                costoActual = copy.copy(costoNew)
-
-            costos.append(costoActual)
-        Tact = alpha*Tact
-    
-    elapsed_time = time() - start_time
-    plt.plot(costos,'o')
-    plt.ylabel("Costos de distancias")
-    plt.xlabel("instalaciones")
-    plt.show()
-    input("Parando")
+	globalCost = []
+	globalTime = []
+	mejorSolucionGlobal = []
+	mejorCostoGlobal = []
+	for count in range(repeat):
+	    start_time = time()
+	    costos = []
+	    mejorCostoGlobal = copy.copy(objectFunction(initial,matrizF,matrizD))
+	    mejorCosto = copy.copy(objectFunction(initial,matrizF,matrizD))
+	    costoActual = copy.copy(objectFunction(initial,matrizF,matrizD))
+	    mejorSolucion = copy.copy(initial)
+	    actualSolucion = copy.copy(initial)
+	    mejorSolucionGlobal = copy.copy(initial)
+	    Tact = copy.copy(Tmax)
+	    while(Tact > Tmin):
+	        for i in range(iteracionesInternas):
+	            initial_prima = copy.copy(theBestNeighborhood(actualSolucion,matrizF,matrizD))
+	            costoNew = copy.copy(objectFunction(initial_prima,matrizF,matrizD))
+	            error = costoNew - costoActual
+	            if error <= 0: 
+	            	costoActual = copy.copy(costoNew)
+	            	actualSolucion = copy.copy(initial_prima)
+	            	if mejorCosto > costoNew:
+	            		mejorSolucionGlobal = copy.copy(initial_prima)
+	            		mejorCostoGlobal = copy.copy(costoNew)
+	            		mejorCosto = copy.copy(costoNew)
+	            		mejorSolucion = copy.copy(initial_prima)
+	            elif random.random() < (math.e**(-(error)/Tact)):
+	                actualSolucion = copy.copy(initial_prima)
+	                costoActual = copy.copy(costoNew)
+	            costos.append(costoActual)
+	        Tact = alpha*Tact
+	    elapsed_time = time() - start_time
+	    globalCost.append(costos)
+	    globalTime.append(elapsed_time)
+	    print("Siguiente")
+	graficarSA(globalCost)
+	return globalCost, globalTime, mejorSolucionGlobal, mejorCostoGlobal
 
 
 # --------------- Tournament ------------- # 
@@ -218,27 +210,145 @@ def changeGeneration(oldPoblation,newGenetation,quantityOfGeneration,matrizF,mat
 def theBestSolutionForGeneration(newGenetation,matrizF,matrizD):
 	newGenetation = [[objectFunction(newGenetation[i],matrizF,matrizD),newGenetation[i]] for i in range(len(newGenetation))]
 	newGenetation.sort(key = lambda x : x[0])
-	return newGenetation[0][0]
+	return newGenetation[0]
 
 # ---------- Genetico ------------------ # 
 
-def AG(initialPoblation,matrizF,matrizD,generation,quantityOfParents,porcentageOfMutation):
-	start_time = time()
-	poblation = copy.copy(initialPoblation)
-	betterSolution = []
-	betterSolution.append(theBestSolutionForGeneration(poblation,matrizF,matrizD))
+def AG(initialPoblation,matrizF,matrizD,generation,quantityOfParents,porcentageOfMutation,repeat):
+	globalBetterSolution = []
+	globalTime = []
+	mejorSolucionGlobal = []
+	mejorCostoGlobal = []
 
-	for actualGeneration in range(generation):
-		selectPoblation = tournament(poblation,quantityOfParents,matrizF,matrizD)
-		reproductionList = reproduction(selectPoblation)
-		mutationList = mutation(reproductionList,porcentageOfMutation)
-		poblation = changeGeneration(poblation,mutationList,len(poblation),matrizF,matrizD)
-		# Save the best solution
-		betterSolution.append(theBestSolutionForGeneration(poblation,matrizF,matrizD))
-	print(betterSolution)
-	elapsed_time = time() - start_time
-	plt.plot(betterSolution,'o')
-	plt.ylabel("Costos de distancias")
-	plt.xlabel("instalaciones")
+	for count in range(repeat):
+		start_time = time()
+		poblation = copy.copy(initialPoblation)  
+		betterSolution = []
+		betterSolution.append(theBestSolutionForGeneration(poblation,matrizF,matrizD)[0])
+		mejorCostoGlobal = theBestSolutionForGeneration(poblation,matrizF,matrizD)[0]
+		mejorSolucionGlobal = theBestSolutionForGeneration(poblation,matrizF,matrizD)[1]
+
+		for actualGeneration in range(generation-1):
+			selectPoblation = tournament(poblation,quantityOfParents,matrizF,matrizD)
+			reproductionList = reproduction(selectPoblation)
+			mutationList = mutation(reproductionList,porcentageOfMutation)
+			poblation = changeGeneration(poblation,mutationList,len(poblation),matrizF,matrizD)
+			# Save the best solution
+			auxSolution = theBestSolutionForGeneration(poblation,matrizF,matrizD)
+			betterSolution.append(auxSolution[0])
+			if (mejorCostoGlobal > auxSolution[0]):
+				mejorCostoGlobal = copy.copy(auxSolution[0])
+				mejorSolucionGlobal = copy.copy(auxSolution[1])
+			#betterSolution.append(theBestSolutionForGeneration(poblation,matrizF,matrizD))
+		print(betterSolution)
+		elapsed_time = time() - start_time
+		globalBetterSolution.append(betterSolution)
+		globalTime.append(elapsed_time)
+		print("Siguiente")
+	graficarAG(globalBetterSolution,globalTime,generation,repeat)
+	return globalBetterSolution, globalTime, mejorSolucionGlobal, mejorCostoGlobal
+
+
+def graficarAG(globalBetterSolution,globalTime,generation,repeat):
+	colors = ['black','red','gray','orange','gold','yellow','green','aqua','blue','indigo','pink']
+	count = 0
+	generation = list(range(1,generation+1))
+	indexForTime = list(range(1,repeat+1))
+	
+	dateComplete = []
+	for aux in range(len(globalBetterSolution)):
+		listAux = []
+		listAux.append(globalBetterSolution[aux])
+		listAux.append(globalTime[aux])
+		dateComplete.append(listAux)
+
+	dateComplete.sort(key = lambda x : x[0][len(x[0])-1])
+
+	for instancia in dateComplete:
+		plt.scatter(generation,instancia[0],s=15)
+	plt.title("Totalidad de ejecuciones")
+	plt.ylabel("Costos")
+	plt.xlabel("Generación")
+	plt.legend(loc='best')
 	plt.show()
-	input("Parando")
+
+	for instancia in dateComplete[:11]:
+		plt.scatter(generation,instancia[0],c=colors[count],label="Iteración" + str(count+1),s=15)
+		count = count + 1
+	plt.title("Los 11 mejores resultados")
+	plt.ylabel("Costos")
+	plt.xlabel("Generación")
+	plt.legend(loc='best')
+	plt.show()
+
+	count = 0
+	for instancia in dateComplete[len(dateComplete[0])-11:]:
+		plt.scatter(generation,instancia[0],c=colors[count],label="Iteración" + str(count+1),s=15)
+		count = count + 1
+	plt.title("Los 11 peores resultados")
+	plt.ylabel("Costos")
+	plt.xlabel("Generación")
+	plt.legend(loc='best')
+	plt.show()
+
+	count = 0
+	for instancia in dateComplete[:3]:
+		plt.scatter(generation,instancia[0],c=colors[count],label="Iteración" + str(count+1),s=15)
+		count = count + 1
+	plt.title("Los 3 mejores resultados")
+	plt.ylabel("Costos")
+	plt.xlabel("Generación")
+	plt.legend(loc='best')
+	plt.show()
+
+	auxTimeOrder = []
+	for auxTime in dateComplete:
+		auxTimeOrder.append(auxTime[1])
+	plt.scatter(indexForTime,auxTimeOrder,s=15)
+	plt.ylabel("Tiempo de ejecución de las instancias")
+	plt.xlabel("Repetición")
+	plt.legend(loc='best')
+	plt.show()	
+
+
+def graficarSA(globalBetterSolution):
+	print(globalBetterSolution[0])
+	print(str(len(globalBetterSolution[0])))
+	globalBetterSolution.sort(key = lambda x : x[len(x)-1])
+	print(globalBetterSolution)
+	colors = ['black','red','gray','orange','gold','yellow','green','aqua','blue','indigo','pink']
+	count = 0
+	generation = list(range(1,len(globalBetterSolution[0])+1))
+
+	for instancia in globalBetterSolution:
+		plt.scatter(generation,instancia,s=15)
+	plt.ylabel("Costos")
+	plt.xlabel("Iteraciones")
+	plt.legend(loc='best')
+	plt.show()
+
+	for instancia in globalBetterSolution[:11]:
+		plt.scatter(generation,instancia,c=colors[count],label="Iteración" + str(count+1),s=15)
+		count = count + 1
+	plt.ylabel("Costos")
+	plt.xlabel("Iteraciones")
+	plt.legend(loc='best')
+	plt.show()
+
+	count = 0
+	for instancia in globalBetterSolution[len(globalBetterSolution)-11:]:
+		plt.scatter(generation,instancia,c=colors[count],label="Iteración" + str(count+1),s=15)
+		count = count + 1
+	plt.ylabel("Costos")
+	plt.xlabel("Iteraciones")
+	plt.legend(loc='best')
+	plt.show()
+
+	count = 0
+	for instancia in globalBetterSolution[:3]:
+		plt.scatter(generation,instancia,c=colors[count],label="Iteración" + str(count+1),s=15)
+		count = count + 1
+	plt.ylabel("Costos")
+	plt.xlabel("Iteraciones")
+	plt.legend(loc='best')
+	plt.show()

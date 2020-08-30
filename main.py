@@ -1,4 +1,4 @@
-from lecture import lectureFile
+from lecture import lectureFile, writeOut
 from solutions import generateInitialSolution,objectFunction,theBestNeighborhood, SA, AG
 import numpy
 
@@ -29,17 +29,18 @@ def menu ():
 			initialSolution = generateInitialSolution(len(matrixFlow),1)
 			maxTemperature = objectFunction(initialSolution,matrixFlow,matrixDistance)/2
 			minTemperature = 10
-			numberOfIteration = 20
+			numberOfIteration = 10
 			alpha = 0.99 # Geometrica
-			SA(maxTemperature,minTemperature,numberOfIteration,alpha,initialSolution,matrixFlow,matrixDistance)
+			globalCostSA, globalTimeSA, mejorSolucionGlobalSA, mejorCostoGlobalSA = SA(maxTemperature,minTemperature,numberOfIteration,alpha,initialSolution,matrixFlow,matrixDistance,32)
+			#writeOut(globalCost,globalTime,mejorSolucionGlobal,mejorCostoGlobal,name)
 
 		elif opcion == "3" and matrixFlow is not None and matrixDistance is not None:
-			numberOfPoblation = 100
+			numberOfPoblation = 200
 			porcentageOfMutation = 0.1
 			quantityOfParents = int(numberOfPoblation/2)
-			quantityOfGeneration = 100
+			quantityOfGeneration = 200
 			poblation = generateInitialSolution(len(matrixFlow),numberOfPoblation)
-			AG(poblation,matrixFlow,matrixDistance,quantityOfGeneration,quantityOfParents,porcentageOfMutation)
+			globalCostAG, globalTimeAG, mejorSolucionGlobalAG, mejorCostoGlobalAG = AG(poblation,matrixFlow,matrixDistance,quantityOfGeneration,quantityOfParents,porcentageOfMutation,32)
 			print("Opcion 3")
 		
 		elif opcion == "4":
