@@ -35,10 +35,10 @@ def menu ():
 			#writeOut(globalCost,globalTime,mejorSolucionGlobal,mejorCostoGlobal,name)
 
 		elif opcion == "3" and matrixFlow is not None and matrixDistance is not None:
-			numberOfPoblation = 10#200
+			numberOfPoblation = 200
 			porcentageOfMutation = 0.1
 			quantityOfParents = int(numberOfPoblation/2)
-			quantityOfGeneration = 2#200
+			quantityOfGeneration = 200
 			poblation = generateInitialSolution(len(matrixFlow),numberOfPoblation)
 			globalCostAG, globalTimeAG, mejorSolucionGlobalAG, mejorCostoGlobalAG = AG(poblation,matrixFlow,matrixDistance,quantityOfGeneration,quantityOfParents,porcentageOfMutation,32)
 			writeOut(globalCostAG, globalTimeAG, mejorSolucionGlobalAG, mejorCostoGlobalAG,name[:2]+"_AG")
