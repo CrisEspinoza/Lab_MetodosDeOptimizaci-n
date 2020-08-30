@@ -244,7 +244,7 @@ def AG(initialPoblation,matrizF,matrizD,generation,quantityOfParents,porcentageO
 		elapsed_time = time() - start_time
 		globalBetterSolution.append(betterSolution)
 		globalTime.append(elapsed_time)
-		print("Siguiente")
+		print("Iteracion " + str(count+1))
 	graficarAG(globalBetterSolution,globalTime,generation,repeat)
 	return globalBetterSolution, globalTime, mejorSolucionGlobal, mejorCostoGlobal
 

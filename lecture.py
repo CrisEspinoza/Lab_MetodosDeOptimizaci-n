@@ -15,7 +15,8 @@ def lectureFile(name):
     return matriz
 
 def writeOut(globalCost, globalTime, mejorSolucionGlobal, mejorCostoGlobal, name):
-    file = open ( name[:2] + "_out.txt",'a')
+    print(name)
+    file = open ( name + "_out.txt",'a')
     file.write("\n******************* Inicio de inserción ******************\n\n")
     file.write("Los elementos son del archivo: " + name)
     file.write("\n\nLos costos globales son: \n")
