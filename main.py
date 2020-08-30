@@ -41,6 +41,7 @@ def menu ():
 			quantityOfGeneration = 200
 			poblation = generateInitialSolution(len(matrixFlow),numberOfPoblation)
 			globalCostAG, globalTimeAG, mejorSolucionGlobalAG, mejorCostoGlobalAG = AG(poblation,matrixFlow,matrixDistance,quantityOfGeneration,quantityOfParents,porcentageOfMutation,32)
+			writeOut(globalCostAG, globalTimeAG, mejorSolucionGlobalAG, mejorCostoGlobalAG,name[:2]+"_AG")
 			print("Opcion 3")
 		
 		elif opcion == "4":

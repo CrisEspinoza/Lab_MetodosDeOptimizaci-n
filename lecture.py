@@ -24,7 +24,7 @@ def writeOut(globalCost, globalTime, mejorSolucionGlobal, mejorCostoGlobal, name
     file.write("\n\nLos tiempos globales son: \n\n")
     count = 1
     for aux in globalTime:
-        file.write("Iteración" + str(count) + ": " + str(aux) + " \n")
+        file.write("Iteración " + str(count) + ": " + str(aux) + " \n")
         count = count + 1
     file.write("\nLa mejor solución global es: ")
     for aux in mejorSolucionGlobal:
