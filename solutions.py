@@ -103,8 +103,8 @@ def SA(Tmax, Tmin, iteracionesInternas, alpha, initial, matrizF, matrizD,repeat)
 	    elapsed_time = time() - start_time
 	    globalCost.append(costos)
 	    globalTime.append(elapsed_time)
-	    print("Siguiente")
-	graficarSA(globalCost)
+	    print("Iteracion " + str(count+1))
+	graficarSA(globalCost,globalTime,repeat)
 	return globalCost, globalTime, mejorSolucionGlobal, mejorCostoGlobal
 
 
@@ -305,50 +305,84 @@ def graficarAG(globalBetterSolution,globalTime,generation,repeat):
 	for auxTime in dateComplete:
 		auxTimeOrder.append(auxTime[1])
 	plt.scatter(indexForTime,auxTimeOrder,s=15)
+	plt.title("Tiempos de ejecución")
 	plt.ylabel("Tiempo de ejecución de las instancias")
 	plt.xlabel("Repetición")
 	plt.legend(loc='best')
 	plt.show()	
 
 
-def graficarSA(globalBetterSolution):
-	print(globalBetterSolution[0])
-	print(str(len(globalBetterSolution[0])))
-	globalBetterSolution.sort(key = lambda x : x[len(x)-1])
-	print(globalBetterSolution)
+def graficarSA(globalBetterSolution,globalTime,repeat):
+	dateComplete = []
+	for aux in range(len(globalBetterSolution)):
+		listAux = []
+		listAux.append(globalBetterSolution[aux])
+		listAux.append(globalTime[aux])
+		dateComplete.append(listAux)
+
+	dateComplete.sort(key = lambda x : x[0][len(x[0])-1])
+	print(dateComplete)
+	input("")
+
 	colors = ['black','red','gray','orange','gold','yellow','green','aqua','blue','indigo','pink']
 	count = 0
 	generation = list(range(1,len(globalBetterSolution[0])+1))
+	indexForTime = list(range(1,repeat+1))
 
-	for instancia in globalBetterSolution:
-		plt.scatter(generation,instancia,s=15)
+	#####
+	for instancia in dateComplete:
+		plt.scatter(generation,instancia[0],s=15)
+	plt.title("Totalidad de ejecuciones")
 	plt.ylabel("Costos")
-	plt.xlabel("Iteraciones")
+	plt.xlabel("Generación")
 	plt.legend(loc='best')
 	plt.show()
 
-	for instancia in globalBetterSolution[:11]:
-		plt.scatter(generation,instancia,c=colors[count],label="Iteración" + str(count+1),s=15)
+	for instancia in dateComplete[:11]:
+		plt.scatter(generation,instancia[0],c=colors[count],label="Iteración" + str(count+1),s=15)
 		count = count + 1
+	plt.title("Los 11 mejores resultados")
 	plt.ylabel("Costos")
-	plt.xlabel("Iteraciones")
+	plt.xlabel("Generación")
 	plt.legend(loc='best')
 	plt.show()
 
 	count = 0
-	for instancia in globalBetterSolution[len(globalBetterSolution)-11:]:
-		plt.scatter(generation,instancia,c=colors[count],label="Iteración" + str(count+1),s=15)
+	for instancia in dateComplete[len(dateComplete[0])-13:]:
+		plt.scatter(generation,instancia[0],c=colors[count],label="Iteración" + str(count+1),s=15)
 		count = count + 1
+	plt.title("Los 11 peores resultados")
 	plt.ylabel("Costos")
-	plt.xlabel("Iteraciones")
+	plt.xlabel("Generación")
 	plt.legend(loc='best')
 	plt.show()
 
 	count = 0
-	for instancia in globalBetterSolution[:3]:
-		plt.scatter(generation,instancia,c=colors[count],label="Iteración" + str(count+1),s=15)
+	for instancia in dateComplete[:3]:
+		plt.scatter(generation,instancia[0],c=colors[count],label="Iteración" + str(count+1),s=15)
 		count = count + 1
+	plt.title("Los 3 mejores resultados")
 	plt.ylabel("Costos")
-	plt.xlabel("Iteraciones")
+	plt.xlabel("Generación")
 	plt.legend(loc='best')
 	plt.show()
+
+	count = 0
+	for instancia in dateComplete[len(dateComplete[0])-5:]:
+		plt.scatter(generation,instancia[0],c=colors[count],label="Iteración" + str(count+1),s=15)
+		count = count + 1
+	plt.title("Los 3 peores resultados")
+	plt.ylabel("Costos")
+	plt.xlabel("Generación")
+	plt.legend(loc='best')
+	plt.show()
+
+	auxTimeOrder = []
+	for auxTime in dateComplete:
+		auxTimeOrder.append(auxTime[1])
+	plt.scatter(indexForTime,auxTimeOrder,label="Tiempo",s=15)
+	plt.title("Tiempos de ejecución")
+	plt.ylabel("Tiempo de ejecución de las instancias")
+	plt.xlabel("Repetición")
+	plt.legend(loc='best')
+	plt.show()	

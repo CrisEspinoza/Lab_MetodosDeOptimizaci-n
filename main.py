@@ -19,7 +19,7 @@ def menu ():
 		print(opcion)
 		if opcion == "1":
 			#name = input("Ingrese el nombre del archivo (con extensión): ")
-			name = "12.txt"
+			name = "64.txt"
 			# Matriz de instalaciones
 			matrixFlow = numpy.array(lectureFile("F" + name))
 			# Matriz de distancias
@@ -29,19 +29,19 @@ def menu ():
 			initialSolution = generateInitialSolution(len(matrixFlow),1)
 			maxTemperature = objectFunction(initialSolution,matrixFlow,matrixDistance)/2
 			minTemperature = 10
-			numberOfIteration = 10
+			numberOfIteration = 100 # 50 para 64 
 			alpha = 0.99 # Geometrica
 			globalCostSA, globalTimeSA, mejorSolucionGlobalSA, mejorCostoGlobalSA = SA(maxTemperature,minTemperature,numberOfIteration,alpha,initialSolution,matrixFlow,matrixDistance,32)
-			#writeOut(globalCost,globalTime,mejorSolucionGlobal,mejorCostoGlobal,name)
+			writeOut(globalCostSA, globalTimeSA, mejorSolucionGlobalSA, mejorCostoGlobalSA,name[:2] + "_SA")
 
 		elif opcion == "3" and matrixFlow is not None and matrixDistance is not None:
-			numberOfPoblation = 200
+			numberOfPoblation = 100#200
 			porcentageOfMutation = 0.1
 			quantityOfParents = int(numberOfPoblation/2)
-			quantityOfGeneration = 200
+			quantityOfGeneration = 2#200
 			poblation = generateInitialSolution(len(matrixFlow),numberOfPoblation)
 			globalCostAG, globalTimeAG, mejorSolucionGlobalAG, mejorCostoGlobalAG = AG(poblation,matrixFlow,matrixDistance,quantityOfGeneration,quantityOfParents,porcentageOfMutation,32)
-			writeOut(globalCostAG, globalTimeAG, mejorSolucionGlobalAG, mejorCostoGlobalAG,name[:2]+"_AG")
+			writeOut(globalCostAG, globalTimeAG, mejorSolucionGlobalAG, mejorCostoGlobalAG,name[:2] + "_AG")
 			print("Opcion 3")
 		
 		elif opcion == "4":
