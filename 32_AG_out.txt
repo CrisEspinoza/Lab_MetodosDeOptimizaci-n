@@ -46,6 +46,7 @@ La mejor solución global es: 29 27 31 4 30 23 21 24 20 6 16 22 18 5 11 25 28 9 
 El mejor costo es: : 22232 
 
 ******************* Termino de inserción ******************
+<<<<<<< HEAD
 
 ******************* Inicio de inserción ******************
 
@@ -94,3 +95,5 @@ La mejor solución global es: 20 29 22 30 25 28 26 27 17 15 4 16 2 6 31 21 24 7 
 El mejor costo es: : 21448 
 
 ******************* Termino de inserción ******************
+=======
+>>>>>>> master
