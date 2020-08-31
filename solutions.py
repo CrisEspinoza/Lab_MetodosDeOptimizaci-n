@@ -238,7 +238,7 @@ def AG(initialPoblation,matrizF,matrizD,generation,quantityOfParents,porcentageO
 			betterSolution.append(auxSolution[0])
 			if (mejorCostoGlobal > auxSolution[0]):
 				mejorCostoGlobal = copy.copy(auxSolution[0])
-				mejorSolucionGlobal = copy.copy(auxSolution[1])
+				mejorSolucionGlobal = copy.copy(auxSolution[1]) 
 			#betterSolution.append(theBestSolutionForGeneration(poblation,matrizF,matrizD))
 		print(betterSolution)
 		elapsed_time = time() - start_time
@@ -282,7 +282,7 @@ def graficarAG(globalBetterSolution,globalTime,generation,repeat):
 	plt.show()
 
 	count = 0
-	for instancia in dateComplete[len(dateComplete[0])-11:]:
+	for instancia in dateComplete[len(dateComplete[0])-13:]:
 		plt.scatter(generation,instancia[0],c=colors[count],label="Iteración" + str(count+1),s=15)
 		count = count + 1
 	plt.title("Los 11 peores resultados")
@@ -296,6 +296,16 @@ def graficarAG(globalBetterSolution,globalTime,generation,repeat):
 		plt.scatter(generation,instancia[0],c=colors[count],label="Iteración" + str(count+1),s=15)
 		count = count + 1
 	plt.title("Los 3 mejores resultados")
+	plt.ylabel("Costos")
+	plt.xlabel("Generación")
+	plt.legend(loc='best')
+	plt.show()
+
+	count = 0
+	for instancia in dateComplete[len(dateComplete[0])-5:]:
+		plt.scatter(generation,instancia[0],c=colors[count],label="Iteración" + str(count+1),s=15)
+		count = count + 1
+	plt.title("Los 11 peores resultados")
 	plt.ylabel("Costos")
 	plt.xlabel("Generación")
 	plt.legend(loc='best')
@@ -334,7 +344,7 @@ def graficarSA(globalBetterSolution,globalTime,repeat):
 		plt.scatter(generation,instancia[0],s=15)
 	plt.title("Totalidad de ejecuciones")
 	plt.ylabel("Costos")
-	plt.xlabel("Generación")
+	plt.xlabel("Iteraciones")
 	plt.legend(loc='best')
 	plt.show()
 

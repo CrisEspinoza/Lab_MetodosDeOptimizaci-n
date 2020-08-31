@@ -1,0 +1,141 @@
+
+
+******************* Inicio de inserción ******************
+
+Los elementos son del archivo: 12sa
+La temperatura inicial es: 34130.0
+La cantidad de iteraciones es: 100
+El valor de alpha es: 0.99
+El valor minimo alcanzado fue: 9562
+El valor minimo fue alcanzado en un tiempo de: 41.08046245574951
+El valor maximo alcanzado fue: 68260
+El valor maximo fue alcanzado en un tiempo de: 59.34986925125122
+El valor medio alcanzado fue: 18707.98490648379
+El valor promedio en tiempos de ejecución fue de: 45.67555083334446
+El valor de la desviación estandar alcanzado fue: 8525.985264233243
+El valor de la varianza alcanzado fue: 72692424.7259224
+
+******************* Termino de inserción ******************
+
+******************* Inicio de inserción ******************
+
+Los elementos son del archivo: 26sa
+La temperatura inicial es: 3216109.5
+La cantidad de iteraciones es: 100
+El valor de alpha es: 0.99
+El valor minimo alcanzado fue: 5484226
+El valor minimo fue alcanzado en un tiempo de: 278.1080524921417
+El valor maximo alcanzado fue: 6432219
+El valor maximo fue alcanzado en un tiempo de: 518.0364308357239
+El valor medio alcanzado fue: 5618126.591321293
+El valor promedio en tiempos de ejecución fue de: 287.26350989192724
+El valor de la desviación estandar alcanzado fue: 107066.09086426925
+El valor de la varianza alcanzado fue: 11463147812.95596
+
+******************* Termino de inserción ******************
+
+******************* Inicio de inserción ******************
+
+Los elementos son del archivo: 32sa
+La temperatura inicial es: 14959.0
+La cantidad de iteraciones es: 100
+El valor de alpha es: 0.99
+El valor minimo alcanzado fue: 21424
+El valor minimo fue alcanzado en un tiempo de: 236.8830361366272
+El valor maximo alcanzado fue: 29918
+El valor maximo fue alcanzado en un tiempo de: 252.7726697921753
+El valor medio alcanzado fue: 24263.90133526723
+El valor promedio en tiempos de ejecución fue de: 239.8718100488186
+El valor de la desviación estandar alcanzado fue: 1309.9830385103269
+El valor de la varianza alcanzado fue: 1716055.5611847483
+
+******************* Termino de inserción ******************
+
+******************* Inicio de inserción ******************
+
+Los elementos son del archivo: 64sa
+La temperatura inicial es: 165.0
+La cantidad de iteraciones es: 50
+El valor de alpha es: 0.99
+El valor minimo alcanzado fue: 142
+El valor minimo fue alcanzado en un tiempo de: 359.66067242622375
+El valor maximo alcanzado fue: 330
+El valor maximo fue alcanzado en un tiempo de: 420.36302423477173
+El valor medio alcanzado fue: 227.55488847583644
+El valor promedio en tiempos de ejecución fue de: 367.5558279529214
+El valor de la desviación estandar alcanzado fue: 28.39339610975684
+El valor de la varianza alcanzado fue: 806.1849426455548
+
+******************* Termino de inserción ******************
+
+******************* Inicio de inserción ******************
+
+Los elementos son del archivo: 12ag
+La población inicial es: 200
+La cantidad de generacion es: 200
+La cantidad de padres a generar es: 100
+El porcentaje de mutacion es: 0.1
+El valor minimo alcanzado fue: 9916
+El valor minimo fue alcanzado en un tiempo de: 32.563756704330444
+El valor maximo alcanzado fue: 25186
+El valor maximo fue alcanzado en un tiempo de: 37.0541353225708
+El valor medio alcanzado fue: 17828.0196875
+El valor promedio en tiempos de ejecución fue de: 33.99474133551121
+El valor de la desviación estandar alcanzado fue: 3704.486641929945
+El valor de la varianza alcanzado fue: 13723221.280237403
+
+******************* Termino de inserción ******************
+
+******************* Inicio de inserción ******************
+
+Los elementos son del archivo: 26ag
+La población inicial es: 200
+La cantidad de generacion es: 200
+La cantidad de padres a generar es: 100
+El porcentaje de mutacion es: 0.1
+El valor minimo alcanzado fue: 5445100
+El valor minimo fue alcanzado en un tiempo de: 114.30720281600952
+El valor maximo alcanzado fue: 5686478
+El valor maximo fue alcanzado en un tiempo de: 236.94887566566467
+El valor medio alcanzado fue: 5528478.218125
+El valor promedio en tiempos de ejecución fue de: 167.68067996948957
+El valor de la desviación estandar alcanzado fue: 49297.00310517031
+El valor de la varianza alcanzado fue: 2430194515.151171
+
+******************* Termino de inserción ******************
+
+******************* Inicio de inserción ******************
+
+Los elementos son del archivo: 32ag
+La población inicial es: 100
+La cantidad de generacion es: 100
+La cantidad de padres a generar es: 50
+El porcentaje de mutacion es: 0.1
+El valor minimo alcanzado fue: 21060
+El valor minimo fue alcanzado en un tiempo de: 53.09597730636597
+El valor maximo alcanzado fue: 25826
+El valor maximo fue alcanzado en un tiempo de: 71.3037941455841
+El valor medio alcanzado fue: 23049.08875
+El valor promedio en tiempos de ejecución fue de: 61.267667554318905
+El valor de la desviación estandar alcanzado fue: 955.0621914951076
+El valor de la varianza alcanzado fue: 912143.7896234376
+
+******************* Termino de inserción ******************
+
+******************* Inicio de inserción ******************
+
+Los elementos son del archivo: 64ag
+La población inicial es: 100
+La cantidad de generacion es: 100
+La cantidad de padres a generar es: 50
+El porcentaje de mutacion es: 0.1
+El valor minimo alcanzado fue: 144
+El valor minimo fue alcanzado en un tiempo de: 208.166330575943
+El valor maximo alcanzado fue: 224
+El valor maximo fue alcanzado en un tiempo de: 251.6051549911499
+El valor medio alcanzado fue: 183.488125
+El valor promedio en tiempos de ejecución fue de: 230.35947356373072
+El valor de la desviación estandar alcanzado fue: 18.111715379399463
+El valor de la varianza alcanzado fue: 328.034233984375
+
+******************* Termino de inserción ******************
